@@ -1,0 +1,286 @@
+<!DOCTYPE html>
+<html lang="lo">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>ບີນ</title>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+Lao&display=swap');
+    * { font-family: 'Noto Sans Lao', sans-serif; box-sizing: border-box; }
+    body {
+      background: rgba(0, 0, 0, 0.815);
+      background-image: url("xc.jpg");
+      background-size: cover;
+      background-repeat: no-repeat;
+      background-position: center;
+      text-align: center;
+      padding: 20px;
+      color: #222;
+    }
+    .ticket {
+      position: relative;
+      background-color: #ffffff;
+      border: 1px solid #999;
+      max-width: 400px;
+      width: 100%;
+      margin: auto;
+      padding: 15px;
+      box-shadow: 0 0 10px #ccc;
+      z-index: 1;
+      text-align: left;
+    }
+    .header {
+      background-color: #d6e6f3;
+      padding: 5px;
+      font-weight: bold;
+      border-bottom: 1px solid #aaa;
+      text-align: center;
+    }
+    .title { margin: 15px 0; font-size: 1.2em; }
+    .info { font-size: 1.4em; margin: 5px 0; }
+    .note {
+      font-size:1.2em;
+      margin-top: 15px;
+      color: #333;
+      line-height: 1.3em;
+    }
+    .watermark {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%) rotate(-30deg);
+      font-size: 2em;
+      color: rgba(255, 0, 0, 0.1);
+      pointer-events: none;
+      z-index: 0;
+      white-space: nowrap;
+      text-align: center;
+      line-height: 1.2em;
+    }
+    table {
+      margin: 30px auto;
+      border-collapse: collapse;
+      width: 100%;
+      max-width: 400px;
+    }
+    td {
+      padding: 5px;
+      display: block;
+      text-align: left;
+      width: 100%;
+    }
+    input[type="text"],
+    input[type="number"],
+    textarea {
+      padding: 5px;
+      width: 100%;
+      font-size: 1em;
+      margin-top: 4px;
+      border-radius: 4px;
+      border: 1px solid #ccc;
+      resize: vertical;
+    }
+    button {
+      padding: 8px 12px;
+      margin: 5px 4px;
+      cursor: pointer;
+      font-size: 1em;
+      width: 100%;
+      max-width: 200px;
+      border: none;
+      border-radius: 5px;
+      background-color: #3b6ef7;
+      color: white;
+      transition: background-color 0.3s;
+    }
+    button:hover {
+      background-color: #2a50c7;
+    }
+    button a {
+      color: inherit;
+      text-decoration: none;
+      display: inline-block;
+      width: 100%;
+      height: 100%;
+    }
+    @media screen and (max-width: 480px) {
+      .info { font-size: 1.2em; }
+      .note { font-size: 0.85em; }
+      .ticket { padding: 10px; }
+      button { font-size: 0.95em; }
+    }
+    @media print {
+      body * { visibility: hidden; }
+      .ticket, .ticket * {
+        visibility: visible;
+      }
+      .ticket {
+        position: absolute;
+        left: 0;
+        top: 0;
+        width: 100%;
+        box-shadow: none;
+        margin: 0;
+      }
+    }
+  </style>
+</head>
+<body>
+  <textarea id="copyBox" rows="6">
+  ຊື່ຜູ້ໃຊ້: Av7245
+  ລະຫັດຜ່ານ: 0000
+  ເຄດິດ: 0.06
+  https://royaluwin123.com
+  https://royaluwin149.com
+  https://royaluwin1357.com
+  </textarea>
+  <button onclick="pasteText()">📋 ວາງຂໍ້ມູນ</button>
+<h3>ແກ້ໄຂຂໍ້ມູນ</h3>
+<div class="ticket" id="printArea">
+  <img src="uwin.png" alt="" width="10%">
+  <div class="watermark" id="watermarkText">XD-NET888</div>
+  <div class="header" id="datetime"></div>
+  <div class="note" id="taxNote"></div>
+  <div class="note" id="copyTextDisplay" style="margin-top: 20px; background: #eef; padding: 10px; border-radius: 6px; text-align: left; white-space: pre-line;"></div>
+  <div class="notee">
+    jackpot 50,000 ບາດ ຈະຖືກຫັກພາສີ 10%<br>
+    ຕາມ ກົດໝາຍ ຈ່າຍສູງສຸດ 300,000 ບາດ ເມື່ອຖືກ ບໍ່ຮວມ<br>
+    25,000 ຈະຖືກຫັກ 660
+  </div>
+</div>
+<style>
+   .notee {
+      font-size: 1em;
+      margin-top: 15px;
+      color: #333;
+      line-height: 1.3em;
+      text-align: center;
+      justify-content: center;
+      
+    }
+</style>
+
+<button onclick="window.print()">🖨️ ພິມໃບບິນ</button>
+<button onclick="downloadJPG()">📸 ດາວໂຫຼດ JPG</button>
+<button><a href="dashboard.html"><img src="gclub.png" alt="" width="10%"> GCLUB</a></button>
+
+
+
+<script>
+  // แสดงวันที่และเวลาปัจจุบัน พร้อม watermark
+  function updateDateTime() {
+    const now = new Date();
+    const days = ["ທິດ", "ຈັນ", "ຄານ", "ພຸດ", "ພະຫັດ", "ສຸກ", "ເສົາ"];
+    const day = days[now.getDay()];
+    const date = now.toLocaleDateString("lo-LA");
+    const time = now.toLocaleTimeString("lo-LA", {
+      hour: "2-digit", minute: "2-digit", second: "2-digit",
+    });
+    document.getElementById("datetime").textContent = `${day}, ${date} ${time}`;
+    document.getElementById("watermarkText").innerHTML = `XD-NET888<br>${date} ${time}`;
+  }
+
+  // แสดงข้อความใน copyTextDisplay จาก textarea copyBox
+  const copyBox = document.getElementById("copyBox");
+  const copyTextDisplay = document.getElementById("copyTextDisplay");
+  function updateCopyTextDisplay() {
+    copyTextDisplay.textContent = copyBox.value.trim();
+  }
+  copyBox.addEventListener("input", updateCopyTextDisplay);
+
+  // คัดลอกข้อความใน textarea
+  function copyText() {
+    copyBox.select();
+    copyBox.setSelectionRange(0, 99999);
+    document.execCommand("copy");
+    alert("ຄັດລອກຂໍ້ມູນແລ້ວ!");
+  }
+
+  // วางข้อความจากคลิปบอร์ดลงใน textarea
+  async function pasteText() {
+    try {
+      const text = await navigator.clipboard.readText();
+      copyBox.value = text;
+      updateCopyTextDisplay();
+      alert("ວາງຂໍ້ມູນແລ້ວ!");
+    } catch (err) {
+      alert("ບໍ່ສາມາດວາງຂໍ້ມູນໄຊ້ ກະລຸນາອະນຸຍາດເຂົ້າຖືກຄລິບບອດ!");
+    }
+  }
+
+  // อัปเดตข้อมูลในบิลเมื่อกดปุ่ม
+  function updateInfo() {
+    const nameInput = document.getElementById("nameInput").value.trim() || "ບໍ່ມີຊື່";
+    const amountInput = document.getElementById("amountInput").value.trim();
+    const amountVal = amountInput === "" ? 0 : Number(amountInput);
+    const amountFormatted = amountVal.toLocaleString("lo-LA");
+    const codeVal = Math.floor(10000 + Math.random() * 90000).toString();
+
+    // อัปเดตในบิล
+    document.getElementById("nameDisplay")?.remove();
+    const nameDiv = document.createElement("div");
+    nameDiv.id = "nameDisplay";
+    nameDiv.textContent = `ຢູ່ເຊີ້: ${nameInput}`;
+    nameDiv.style.fontWeight = "bold";
+    nameDiv.style.marginTop = "10px";
+
+    document.getElementById("codeDisplay")?.remove();
+    const codeDiv = document.createElement("div");
+    codeDiv.id = "codeDisplay";
+    codeDiv.textContent = `ລະຫັດ: ${codeVal}`;
+    codeDiv.style.fontWeight = "bold";
+    codeDiv.style.marginTop = "5px";
+
+    document.getElementById("amountDisplay")?.remove();
+    const amountDiv = document.createElement("div");
+    amountDiv.id = "amountDisplay";
+    amountDiv.textContent = `ຈຳນວນເງິນ: ${amountFormatted} ບາດ`;
+    amountDiv.style.fontWeight = "bold";
+    amountDiv.style.marginTop = "5px";
+
+    const ticket = document.getElementById("printArea");
+    ticket.appendChild(nameDiv);
+    ticket.appendChild(codeDiv);
+    ticket.appendChild(amountDiv);
+
+    // คำนวณภาษี
+    const tax = amountVal >= 50000 ? amountVal * 0.1 : 660;
+    const note = amountVal >= 50000
+      ? `jackpot ${amountFormatted} ບາດ ຈະຖືກຫັກພາສີ 10%<br>ຈຳນວນຫັກ: ${tax.toLocaleString("lo-LA")}`
+      : `${amountFormatted} ຈະຖືກຫັກ ${tax.toLocaleString("lo-LA")} ບາດ`;
+    document.getElementById("taxNote").innerHTML = note;
+  }
+
+  // ดาวน์โหลดบิลเป็น JPG
+  async function downloadJPG() {
+    const element = document.getElementById("printArea");
+    const canvas = await html2canvas(element, { scale: 2 });
+    const imgData = canvas.toDataURL("image/jpeg", 1.0);
+    const link = document.createElement("a");
+    link.href = imgData;
+    link.download = "ໃບບິນ.jpg";
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
+  }
+
+  // แชร์ข้อความไป WhatsApp
+  function shareToWhatsApp() {
+    const name = document.getElementById("nameInput").value.trim() || "ບໍ່ມີຊື່";
+    const amount = document.getElementById("amountInput").value.trim() || "0";
+    const code = Math.floor(10000 + Math.random() * 90000).toString();
+    const message = `[ບີນ]\nຢູ່ເຊີ້: ${name}\nລະຫັດ: ${code}\nຈຳນວນເງິນ: ${amount} ບາດ`;
+    const encodedMessage = encodeURIComponent(message);
+    const whatsappURL = `https://wa.me/?text=${encodedMessage}`;
+    window.open(whatsappURL, "_blank");
+  }
+
+  // เริ่มต้นเรียกใช้เมื่อโหลดหน้า
+  updateCopyTextDisplay();
+  updateDateTime();
+  setInterval(updateDateTime, 1000);
+</script>
+
+</body>
+</html>

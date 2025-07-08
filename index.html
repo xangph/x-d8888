@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="lo">
+<head>
+  <meta charset="UTF-8" />
+  <title>Admin Login</title>
+  <link rel="stylesheet" href="x.js">
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+Lao&display=swap');
+
+* {
+  font-family: 'Noto Sans Lao', sans-serif;
+  box-sizing: border-box;
+}
+    body {
+      background-image: url("xd.jpeg");
+      font-family: 'Noto Sans Lao', sans-serif;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      background-color: #eef;
+    }
+    .login-box {
+      background: white;
+      padding: 30px;
+      border-radius: 10px;
+      box-shadow: 0 0 10px gray;
+    }
+    input {
+      display: block;
+      width: 100%;
+      margin-bottom: 10px;
+      padding: 10px;
+      font-size: 1em;
+    }
+    button {
+      width: 100%;
+      padding: 10px;
+      font-size: 1em;
+      background-color: #007bff;
+      color: white;
+      border: none;
+      cursor: pointer;
+    }
+    .error {
+      color: red;
+      font-size: 0.9em;
+      margin-top: 5px;
+    }
+  </style>
+</head>
+<body>
+  <script></script>
+
+<div class="login-box">
+  <h2>ເຂົ້າລະບົບ Admin ປິ້ນບິນ</h2>
+  <input type="text" id="username" placeholder="ຊື່ຜູ້ໃຊ້" />
+  <input type="password" id="password" placeholder="ລະຫັດຜ່ານ" />
+  <button onclick="login()">Login</button>
+  <div class="error" id="errorMsg"></div>
+</div>
+<script src="x.js"></script>
+</body>
+</html>

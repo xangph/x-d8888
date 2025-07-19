@@ -144,9 +144,9 @@
   <div class="note" id="taxNote"></div>
   <div class="note" id="copyTextDisplay" style="margin-top: 20px; background: #eef; padding: 10px; border-radius: 6px; text-align: left; white-space: pre-line;"></div>
   <div class="notee">
-    jackpot 50,000 ບາດ ຈະຖືກຫັກພາສີ 10%<br>
-    ຕາມ ກົດໝາຍ ຈ່າຍສູງສຸດ 300,000 ບາດ ເມື່ອຖືກ ບໍ່ຮວມ<br>
-    25,000 ຈະຖືກຫັກ 660
+    jackpot  ຈະຖືກຫັກພາສີ 10%<br>
+    ເກມສະລ໊ອດ ຈ່າຍສູງສຸດ 300,000 ບາດ ເມື່ອຖືກ <br>
+    25,000 ເຫຼດເງີນ 660
   </div>
 </div>
 <style>
@@ -245,8 +245,8 @@
     ticket.appendChild(amountDiv);
 
     // คำนวณภาษี
-    const tax = amountVal >= 50000 ? amountVal * 0.1 : 660;
-    const note = amountVal >= 50000
+    const tax = amountVal >= ? amountVal * 0.1 : 660;
+    const note = amountVal >= 
       ? `jackpot ${amountFormatted} ບາດ ຈະຖືກຫັກພາສີ 10%<br>ຈຳນວນຫັກ: ${tax.toLocaleString("lo-LA")}`
       : `${amountFormatted} ຈະຖືກຫັກ ${tax.toLocaleString("lo-LA")} ບາດ`;
     document.getElementById("taxNote").innerHTML = note;

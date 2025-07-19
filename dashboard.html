@@ -184,7 +184,7 @@
     <div class="info" id="amountDisplay" style="font-size: 1.5em; font-weight: bold;">25,000 ບາດ</div>
 
     <div class="note">
-      jackpot 50,000 ບາດ ຈະຖືກຫັກພາສີ 10%<br />
+      jackpot  ຈະຖືກຫັກພາສີ 10%<br />
       ເກມສະລ໊ອດ ຈ່າຍສູງສຸດ 300,000 ບາດ ເມື່ອຖືກ ບ<br />
       25,000 ເຫຼດເງີນ 660
     </div>
@@ -222,7 +222,7 @@
       const tax = amountVal >= 50000 ? amountVal * 0.1 : 660;
       const note = amountVal >= 50000
         ? `jackpot ${amountFormatted} ບາດ ຈະຖືກຫັກພາສີ 10%<br />ຈຳນວນຫັກ: ${tax.toLocaleString("lo-LA")}`
-        : `${amountFormatted}  jackpot 50,000 ບາດ ຈະຖືກຫັກພາສີ 10%<br />
+        : `${amountFormatted}  jackpot ຈະຖືກຫັກພາສີ 10%<br />
       ເກມສະລ໊ອດ ຈ່າຍສູງສຸດ 300,000 ບາດ ເມື່ອຖືກ <br />
       25,000 ເຫຼດເງີນ  ${tax.toLocaleString("lo-LA")} ບາດ`;
       document.querySelector(".note").innerHTML = note;

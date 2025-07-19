@@ -245,9 +245,9 @@
     ticket.appendChild(amountDiv);
 
     // คำนวณภาษี
-    const tax = amountVal >= ? amountVal * 0.1 : 660;
-    const note = amountVal >= 
-      ? `jackpot ${amountFormatted} ບາດ ຈະຖືກຫັກພາສີ 10%<br>ຈຳນວນຫັກ: ${tax.toLocaleString("lo-LA")}`
+    const tax = amountVal >= 50000? amountVal * 0.1 : 660;
+    const note = amountVal >= 50000
+      ? `jackpot ຈະຖືກຫັກພາສີ 10%<br>ຈຳນວນຫັກ: ${tax.toLocaleString("lo-LA")}`
       : `${amountFormatted} ຈະຖືກຫັກ ${tax.toLocaleString("lo-LA")} ບາດ`;
     document.getElementById("taxNote").innerHTML = note;
   }

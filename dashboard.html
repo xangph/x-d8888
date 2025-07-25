@@ -160,7 +160,10 @@
     </tr>
     <tr>
       <td>ລະຫັດ:</td>
-      <td><input type="text" id="codeInput" value="" readonly /></td>
+      <td>
+        <input type="text" id="codeInput" value="" readonly />
+        <button onclick="copyCode()">📋 ຄັດລອກລະຫັດ</button>
+      </td>
     </tr>
     <tr>
       <td>ຈຳນວນເງິນ:</td>
@@ -172,27 +175,20 @@
   <button onclick="window.print()">🖨️ ພິມໃບບິນ</button>
   <button onclick="downloadJPG()">📸 ດາວໂຫຼດ JPG</button>
   <button><a href="uwin.html"><img src="uwin.png" alt="" width="15%"> Uwin</a></button>
-  
+
   <div class="ticket" id="printArea">
     <img src="gclub.png" alt="" width="10%">
     <div class="watermark" id="watermarkText">DX-Uwin8888</div>
     <div class="header" id="datetime"></div>
-
     <div class="title">ຢູ່ເຊີ້: <span id="nameDisplay">Aisdw1026</span></div>
-
     <div class="info" id="codeDisplay">10486</div>
     <div class="info" id="amountDisplay" style="font-size: 1.5em; font-weight: bold;"></div>
-
     <div class="note">
       jackpot  ຈະຖືກຫັກພາສີ 10%<br />
       ເກມສະລ໊ອດ ຈ່າຍສູງສຸດ 300,000 ບາດ ເມື່ອຖືກ ບ<br />
-       ເຫຼດເງີນ 660
+      ເຫຼດເງີນ 660
     </div>
   </div>
-
-  
-
-  
 
   <script>
     const nameInput = document.getElementById("nameInput");
@@ -222,7 +218,7 @@
       const tax = amountVal >= 50000 ? amountVal * 0.1 : 660;
       const note = amountVal >= 50000
         ? `jackpot ${amountFormatted} ບາດ ຈະຖືກຫັກພາສີ 10%<br />ຈຳນວນຫັກ: ${tax.toLocaleString("lo-LA")}`
-        : `${amountFormatted}  jackpot ຈະຖືກຫັກພາສີ 10%<br />
+        : `${amountFormatted} jackpot ຈະຖືກຫັກພາສີ 10%<br />
       ເກມສະລ໊ອດ ຈ່າຍສູງສຸດ 300,000 ບາດ ເມື່ອຖືກ <br />
        ເຫຼດເງີນ  ${tax.toLocaleString("lo-LA")} ບາດ`;
       document.querySelector(".note").innerHTML = note;
@@ -262,6 +258,17 @@
         if (e.key === "Enter") updateInfo();
       });
     });
+
+    function copyCode() {
+      const codeInput = document.getElementById("codeInput");
+      navigator.clipboard.writeText(codeInput.value)
+        .then(() => {
+          alert("📋 ຄັດລອກລະຫັດ: " + codeInput.value);
+        })
+        .catch(() => {
+          alert("❌ ຄັດລອກບໍ່ສຳເລັດ");
+        });
+    }
 
     function shareToWhatsApp() {
       const name = document.getElementById("nameDisplay").textContent;
